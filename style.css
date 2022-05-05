@@ -6,15 +6,39 @@ body{
     height: 800px;
 }
 
-.container{
+.buttonArea{
     display: flex;
-    width: 180px;
-    height: 180px;
+    align-content: center;
+    /*justify-content: center;*/
+}
+
+.numbersAndOps{
+    display: flex;
+    min-width: 220px;
+    min-height: 220px;
+    max-width: 250px;
+    max-height: 250px;
     flex-wrap: wrap;
-    gap: 0px;
-    align-content: center;;
+    gap: 5px;
+    align-content: center;
+    justify-content: center;
+}
+
+.rightButtons{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
 
 button{
     font-size: 25px;
+}
+
+.topDisplay{
+    font-size: 30px;
+    margin: 0px 20px;
+}
+.mainDisplay{
+    font-size: 50px;
+    margin: 0px 20px;
 }
