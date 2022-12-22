@@ -1,18 +1,16 @@
 let numbersAndOps = document.querySelector('.numbersAndOps');
 let rightButtons = document.querySelector('.rightButtons');
+
 let width = numbersAndOps.offsetHeight;
 let height = numbersAndOps.offsetWidth;
 let gap = window.getComputedStyle(numbersAndOps).getPropertyValue('gap');
 gap = +gap.substring(0,1);
+let buttonWidth;
+let buttonHeight;
 
 //DISPLAYS
 let topDisplay = document.querySelector('.topDisplay');
 let mainDisplay = document.querySelector('.mainDisplay');
-
-let temp;
-let operators;
-let buttonWidth;
-let buttonHeight;
 
 //Nums and Operator
 let num1, num2, operator;
@@ -84,7 +82,7 @@ function drawRightButtons(){
 
 function input(){
 
-    temp = this.getAttribute('data-key');
+    let temp = this.getAttribute('data-key');
     console.log(temp);
     if(!operator){
         //write on num1
@@ -99,10 +97,7 @@ function input(){
     
 }
 function inputOp(){
-    //operator = this.getAttribute('data-key')
-    //console.log(operator);
-    //topDisplay.textContent= num1 + operator;
-
+    
     // try write below before sleep im sleepy ???
     if(!operator){
         operator = this.getAttribute('data-key')
@@ -110,28 +105,37 @@ function inputOp(){
     }else if (!num2){
         operator = this.getAttribute('data-key')
         topDisplay.textContent= topDisplay.textContent.slice(0,-2) + `${operator} `;
-        //make nested if inside here- if operator == null >?? nonoonono
     }else{
         //evaluate
         //let prevOperator = operator;
         num1 = evaluate(num1, num2, operator);    
-        operator = this.getAttribute('data-key') //moved this line to bottom from top
+        operator = this.getAttribute('data-key') 
         topDisplay.textContent+= `${num2} ${operator} `;
         mainDisplay.textContent= num1;
         num2 = null;
-        //operator = null ?? noNO i dont think so it would get rid of the operato we just typed
     }
     
     console.log(operator);
 }
 function clear(){
-
+    num1= num2= operator= null;
+    mainDisplay.textContent = topDisplay.textContent = '0';
 }
 function del(){
 
 }
 function equals(){
+    if (!num2){
 
+    }else{
+        //NEED TO THINK ABT HOW TO DO THIS FUCKK
+        // maybe equals saves prevNum2 and prevOperator???
+        // ?? idk cause of setting num2 to null at the end
+        num1 = evaluate(num1, num2, operator);     
+        topDisplay.textContent+= `${num2} = `;
+        mainDisplay.textContent= num1;
+        num2 = null;
+    }
 }
 
 function evaluate(num1, num2, operator){
